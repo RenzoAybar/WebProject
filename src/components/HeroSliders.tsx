@@ -6,7 +6,7 @@ const slides = [
   { id: 3, img: '/img3.jpg', title: 'Slide 3' },
 ];
 
-export default function Slider() {
+export const Slider = () => {
   const [current, setCurrent] = useState(0);
 
   // Función para avanzar al siguiente slide
