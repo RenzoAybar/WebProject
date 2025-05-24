@@ -1,1 +1,14 @@
 @import "tailwindcss";
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
+
+.swiper-pagination {
+  bottom: 10px !important; /* o menos si quieres más arriba */
+  z-index: 20;
+  position: absolute;
+  text-align:centers;
+
+
+}
