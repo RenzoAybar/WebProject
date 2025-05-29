@@ -1,9 +1,8 @@
-import { Navbar } from "../shared/Navbar";
+
 
 export const RegisterPage = () => {
     return (
         <>
-            <Navbar />
             <section className="min-h-screen flex items-stretch text-white">
                 {/* Imagen lateral para pantallas grandes */}
                 <div
