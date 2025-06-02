@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ThemeToggle } from '../components/ThemeToggle';
 import { useState } from 'react';
 import { ModalHistoria } from '../components/ModalHistoria';
+import { MenuDropdown } from '../components/MenuDropdown';
 
 export const Navbar = () => {
     const [showHistoria, setShowHistoria] = useState(false);
@@ -48,6 +49,7 @@ export const Navbar = () => {
                 <a href="./login" className='text-gray-700'>Inicia sesión</a>
                 <a href="./register" className='text-gray-700'>Registro </a>
                 <img src="/shop.svg" alt="Carrito" className='h-10 w-10' />
+                <MenuDropdown />
             </nav>
         </header>
         <ModalHistoria isOpen={showHistoria} onClose={() => setShowHistoria(false)} />
