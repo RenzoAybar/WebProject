@@ -37,7 +37,18 @@ export const Footer = () => {
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Productos</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Ofertas</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Nuevos Lanzamientos</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Sobre Nosotros</a></li>
+              <li>
+                <a 
+                  href="#" 
+                  className="text-gray-400 hover:text-white transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.dispatchEvent(new CustomEvent('showSobreNosotros'));
+                  }}
+                >
+                  Sobre Nosotros
+                </a>
+              </li>
             </ul>
           </div>
 

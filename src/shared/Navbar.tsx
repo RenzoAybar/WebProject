@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom';
 import { ThemeToggle } from '../components/ThemeToggle';
-import { useState } from 'react';
-import { ModalHistoria } from '../components/ModalHistoria';
+
 import { MenuDropdown } from '../components/MenuDropdown';
 
 export const Navbar = () => {
-    const [showHistoria, setShowHistoria] = useState(false);
     return (
         <>
         <header className='flex justify-between items-center bg-amber-100 px-4 py-2'>
@@ -13,14 +11,6 @@ export const Navbar = () => {
             <Link to="/">
                 <img src="/logo2.svg" alt="logo" className='h-[60px]' />
             </Link>
-            {/* Enlace Historia con mismo estilo que 'Inicia sesión' */}
-            <a
-                href="#"
-                className="text-gray-700 mx-4 whitespace-nowrap"
-                onClick={e => { e.preventDefault(); setShowHistoria(true); }}
-            >
-                Historia de Progresemos Juntos
-            </a>
             {/* Barra de búsqueda */}
             <div className='flex items-center border-2 rounded-3xl overflow-hidden'>
                 <input
@@ -52,7 +42,6 @@ export const Navbar = () => {
                 <MenuDropdown />
             </nav>
         </header>
-        <ModalHistoria isOpen={showHistoria} onClose={() => setShowHistoria(false)} />
         </>
     )
 }
