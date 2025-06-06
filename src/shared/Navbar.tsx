@@ -1,9 +1,11 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeToggle } from '../components/ThemeToggle';
 import { MenuDropdown } from '../components/MenuDropdown';
-import { useEffect, useState } from 'react';
+import CartIcon from '../components/CartIcon';
+import { ModalHistoria } from '../components/ModalHistoria';
 
-const BannerMensaje = () => {
+const BannerCarrusel = () => {
     const mensajes = [
         '👕 LJ TENDENCIA MASCULINA',
         '💰 TENDENCIAS MASCULINAS AL MEJOR PRECIO',
@@ -17,9 +19,7 @@ const BannerMensaje = () => {
     
     useEffect(() => {
         const timer = setInterval(() => {
-            
             setIsTransitioning(true);
-            
             
             setTimeout(() => {
                 setCurrentIndex((prev) => (prev + 1) % mensajes.length);
@@ -31,16 +31,13 @@ const BannerMensaje = () => {
         return () => clearInterval(timer);
     }, [mensajes.length]);
     
-    
     const nextIndex = (currentIndex + 1) % mensajes.length;
     
     return (
-        <div className="bg-black text-white py-2 overflow-hidden">
+        <div className="bg-black text-white py-2 overflow-hidden w-full">
             <div className="relative h-6">
                 <div 
-                    className={`absolute w-full text-center transition-transform duration-500 ${
-                        isTransitioning ? '-translate-x-full' : 'translate-x-0'
-                    }`}
+                    className="absolute w-full text-center"
                     style={{
                         left: '50%',
                         transform: isTransitioning ? 'translateX(-150%)' : 'translateX(-50%)',
@@ -65,15 +62,29 @@ const BannerMensaje = () => {
     );
 };
 
-export const Navbar = () => {
+interface NavbarProps {
+  cartItemCount: number;
+  onCartClick: () => void;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ cartItemCount, onCartClick }) => {
+    const [showHistoria, setShowHistoria] = useState(false);
     return (
         <>
-        <BannerMensaje />
+        <BannerCarrusel />
         <header className='flex justify-between items-center bg-amber-100 px-4 py-2'>
             {/* Logo */}
             <Link to="/">
                 <img src="/logo2.svg" alt="logo" className='h-[60px]' />
             </Link>
+            {/* Enlace Historia con mismo estilo que 'Inicia sesión' */}
+            <a
+                href="#"
+                className="text-gray-700 mx-4 whitespace-nowrap"
+                onClick={e => { e.preventDefault(); setShowHistoria(true); }}
+            >
+                Historia de Progresemos Juntos
+            </a>
             {/* Barra de búsqueda */}
             <div className='flex items-center border-2 rounded-3xl overflow-hidden'>
                 <input
@@ -101,10 +112,11 @@ export const Navbar = () => {
                 <ThemeToggle />
                 <a href="./login" className='text-gray-700'>Inicia sesión</a>
                 <a href="./register" className='text-gray-700'>Registro </a>
-                <img src="/shop.svg" alt="Carrito" className='h-10 w-10' />
+                <CartIcon itemCount={cartItemCount} onClick={onCartClick} />
                 <MenuDropdown />
             </nav>
         </header>
+        <ModalHistoria isOpen={showHistoria} onClose={() => setShowHistoria(false)} />
         </>
     )
 }

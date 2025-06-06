@@ -1,8 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import { RootLayout } from "../Layout/RootLayout";
+import { RootLayout } from "../CartInteraction/RootLayout";
 import { HomePage } from "../pages/HomePage";
 import { LoginPage } from "../pages/LoginPage";
 import { RegisterPage } from "../pages/RegisterPage";
+import { CheckoutPage } from '../pages/CheckoutPage'; // Importar CheckoutPage
 
 export const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
             {
                 path: 'register',
                 element: <RegisterPage />,
+            },
+            {
+                path: 'checkout', // Nueva ruta
+                element: <CheckoutPage />,
             },
 
         ]
