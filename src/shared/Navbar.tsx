@@ -2,8 +2,15 @@ import { Link } from 'react-router-dom';
 import { ThemeToggle } from '../components/ThemeToggle';
 
 import { MenuDropdown } from '../components/MenuDropdown';
+import CartIcon from '../components/CartIcon'; // Importar CartIcon
 
-export const Navbar = () => {
+interface NavbarProps {
+  cartItemCount: number;
+  onCartClick: () => void;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ cartItemCount, onCartClick }) => {
+    const [showHistoria, setShowHistoria] = useState(false);
     return (
         <>
         <header className='flex justify-between items-center bg-amber-100 px-4 py-2'>
@@ -38,7 +45,7 @@ export const Navbar = () => {
                 <ThemeToggle />
                 <a href="./login" className='text-gray-700'>Inicia sesión</a>
                 <a href="./register" className='text-gray-700'>Registro </a>
-                <img src="/shop.svg" alt="Carrito" className='h-10 w-10' />
+                <CartIcon itemCount={cartItemCount} onClick={onCartClick} />
                 <MenuDropdown />
             </nav>
         </header>

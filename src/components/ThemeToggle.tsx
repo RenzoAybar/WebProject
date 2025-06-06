@@ -7,7 +7,7 @@ export const ThemeToggle = () => {
   return (
     <button
       onClick={toggleDarkMode}
-      className="theme-toggle"
+      className={`theme-toggle p-2 rounded-full transition-colors ${darkMode ? 'text-gray-900 bg-black' : 'hover:bg-gray-200'}`}
       aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       {darkMode ? (
