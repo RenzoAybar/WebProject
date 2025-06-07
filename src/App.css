@@ -9,6 +9,13 @@
   z-index: 20;
   position: absolute;
   text-align:centers;
+}
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

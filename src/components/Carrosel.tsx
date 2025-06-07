@@ -27,12 +27,12 @@ export const Carrosel = () => {
       
       <SwiperSlide className='h-150'>
         <div className='flex justify-center container-center my-2 h-150'>
-          <img src="/slider/ropa1.jpg" alt="" />
+          <img src="/slider/banner1.png" alt="" />
         </div>
       </SwiperSlide>
       <SwiperSlide>
         <div className='flex justify-center container-center my-2 h-150'>
-          <img src="/slider/ropa2.jpg" alt="" />
+          <img src="/slider/banner2.png" alt="" />
         </div>
       </SwiperSlide>
       <SwiperSlide>

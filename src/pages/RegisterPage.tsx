@@ -66,22 +66,12 @@ export const RegisterPage = () => {
                             <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-gray-100/50 hover:border-indigo-100/50 hover:bg-white/90 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                                 <form action="" className="space-y-6">
                                     <div>
-                                        <label htmlFor="nombre" className="block text-sm font-medium text-gray-700 mb-2">Nombres</label>
+                                        <label htmlFor="nombre" className="block text-sm font-medium text-gray-700 mb-2">Nombre y Apellido</label>
                                         <input
                                             type="text"
                                             name="nombre"
                                             id="nombre"
-                                            placeholder="Ingresa tus nombres"
-                                            className="w-full px-4 py-3 border border-gray-300/50 rounded-lg bg-white/50 backdrop-blur-sm placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:bg-white focus:placeholder-gray-400 transition-all duration-200"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="apellidos" className="block text-sm font-medium text-gray-700 mb-2">Apellidos</label>
-                                        <input
-                                            type="text"
-                                            name="apellidos"
-                                            id="apellidos"
-                                            placeholder="Ingresa tus apellidos"
+                                            placeholder="Ingresa tu nombre y apellido"
                                             className="w-full px-4 py-3 border border-gray-300/50 rounded-lg bg-white/50 backdrop-blur-sm placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:bg-white focus:placeholder-gray-400 transition-all duration-200"
                                         />
                                     </div>
