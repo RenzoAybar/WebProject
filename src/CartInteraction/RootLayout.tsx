@@ -1,28 +1,29 @@
 import { Outlet } from "react-router-dom";
 import { Navbar } from "../shared/Navbar";
 import { useState } from 'react';
-import CartDropdown from '../components/CartDropdown'; // Ajusta la ruta si es necesario
+import CartDropdown from '../components/CartDropdown';
 import type { CartItem } from '../components/CartDropdown';
-import '../styles/cart.css'; // Asegúrate de que los estilos globales del carrito se importen aquí o en App.tsx
+import '../styles/cart.css';
 
 export const RootLayout = () => {
-    const [cartItems] = useState<CartItem[]>([]); // Real cart items will come from app logic (currently read-only here)
+    const [cartItems] = useState<CartItem[]>([]);
     const [isCartOpen, setIsCartOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState(""); 
 
     const toggleCart = () => setIsCartOpen(!isCartOpen);
     const closeCart = () => setIsCartOpen(false);
-
-
-    // TODO: Implement actual user login state management
-    // For now, isUserLoggedIn will remain false unless set by other means.
 
     const totalItemsInCart = cartItems.reduce((total, item) => total + item.quantity, 0);
 
     return (
         <>
-            <Navbar cartItemCount={totalItemsInCart} onCartClick={toggleCart} />
+            <Navbar 
+                cartItemCount={totalItemsInCart} 
+                onCartClick={toggleCart}
+                onSearch={setSearchTerm} 
+            />
             {isCartOpen && (
-                <div style={{ position: 'relative', zIndex: 1001 }}> {/* Contenedor para el dropdown */}
+                <div style={{ position: 'relative', zIndex: 1001 }}>
                     <CartDropdown 
                         cartItems={cartItems} 
                         isUserLoggedIn={false} 
@@ -31,7 +32,7 @@ export const RootLayout = () => {
                 </div>
             )}
             <main>
-                <Outlet />
+                <Outlet context={{ searchTerm }} /> {}
             </main>
         </>
     );
