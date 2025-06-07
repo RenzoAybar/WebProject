@@ -95,6 +95,11 @@ export const RegisterPage = () => {
                                             className="w-full px-4 py-3 border border-gray-300/50 rounded-lg bg-white/50 backdrop-blur-sm placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:bg-white focus:placeholder-gray-400 transition-all duration-200"
                                         />
                                     </div>
+                                    <div className="text-right">
+                                        <a href="/recuperar-contrasena" className="text-sm text-indigo-600 hover:text-indigo-800 transition-colors duration-200">
+                                            ¿Olvidaste tu contraseña?
+                                        </a>
+                                    </div>
                                     <div className="flex items-center">
                                         <input
                                             id="remember-me"
