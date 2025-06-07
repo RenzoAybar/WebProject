@@ -65,19 +65,27 @@ const BannerCarrusel = () => {
 interface NavbarProps {
   cartItemCount: number;
   onCartClick: () => void;
+  onSearch: (term: string) => void; 
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ cartItemCount, onCartClick }) => {
+export const Navbar: React.FC<NavbarProps> = ({ cartItemCount, onCartClick, onSearch }) => {
     const [showHistoria, setShowHistoria] = useState(false);
+    const [inputValue, setInputValue] = useState(""); 
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(e.target.value);
+        onSearch(e.target.value); 
+    };
+
     return (
         <>
         <BannerCarrusel />
         <header className='flex justify-between items-center bg-amber-100 px-4 py-2'>
-            {/* Logo */}
+            {}
             <Link to="/">
                 <img src="/logo2.svg" alt="logo" className='h-[60px]' />
             </Link>
-            {/* Enlace Historia con mismo estilo que 'Inicia sesión' */}
+            {}
             <a
                 href="#"
                 className="text-gray-700 mx-4 whitespace-nowrap"
@@ -85,7 +93,7 @@ export const Navbar: React.FC<NavbarProps> = ({ cartItemCount, onCartClick }) =>
             >
                 Historia de Progresemos Juntos
             </a>
-            {/* Barra de búsqueda */}
+            {}
             <div className='flex items-center border-2 rounded-3xl overflow-hidden'>
                 <input
                     type="text"
@@ -102,12 +110,14 @@ export const Navbar: React.FC<NavbarProps> = ({ cartItemCount, onCartClick }) =>
                     onFocus={(e) => e.target.placeholder = ''}
                     onBlur={(e) => e.target.placeholder = 'Buscar en la tienda'}
                     className='w-200 h-10 px-4 outline-none'
+                    value={inputValue}
+                    onChange={handleInputChange} 
                 />
                 <button className='px-4'>
                     <img src="/search.svg" alt="Buscar" className='h-5 w-5' />
                 </button>
             </div>
-            {/* Navegación */}
+            {}
             <nav className='flex items-center gap-6'>
                 <ThemeToggle />
                 <a href="./login" className='text-gray-700'>Inicia sesión</a>
