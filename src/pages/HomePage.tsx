@@ -4,17 +4,17 @@ import { useEffect, useState } from "react"
 import { FeaturedProducts } from "../components/FeaturedProducts"
 import { RecommendedProducts } from "../components/RecommendedProducts"
 import { MainBrands } from "../components/MainBrands"
+import { useOutletContext } from "react-router-dom";
 
 export const HomePage = () => {
     const [showSobreNosotros, setShowSobreNosotros] = useState(false)
+    const { searchTerm } = useOutletContext<{ searchTerm: string }>(); 
 
     useEffect(() => {
         const handleShowSobreNosotros = () => setShowSobreNosotros(true)
 
-        // Agregar el event listener
         document.addEventListener('showSobreNosotros', handleShowSobreNosotros)
 
-        // Limpiar el event listener al desmontar el componente
         return () => {
             document.removeEventListener('showSobreNosotros', handleShowSobreNosotros)
         }
@@ -28,12 +28,11 @@ export const HomePage = () => {
             
             <MainBrands/>
 
-            <FeaturedProducts />
-
-            <RecommendedProducts />
+            <FeaturedProducts searchTerm={searchTerm} /> {}
+            <RecommendedProducts searchTerm={searchTerm} /> {}
             <Footer />
 
-            {/* Modal de Sobre Nosotros */}
+            {}
             {showSobreNosotros && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4" onClick={() => setShowSobreNosotros(false)}>
                     <div
