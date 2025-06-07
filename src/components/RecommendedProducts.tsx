@@ -71,6 +71,3 @@ export const RecommendedProducts: React.FC<RecommendedProductsProps> = ({ search
         </div>
     );
 };
-
-    );
-};
