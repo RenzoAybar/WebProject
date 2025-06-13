@@ -65,7 +65,7 @@ const BannerCarrusel = () => {
 interface NavbarProps {
   cartItemCount: number;
   onCartClick: () => void;
-  onSearch: (term: string) => void; 
+  onSearch?: (term: string) => void; 
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ cartItemCount, onCartClick, onSearch }) => {
@@ -73,8 +73,11 @@ export const Navbar: React.FC<NavbarProps> = ({ cartItemCount, onCartClick, onSe
     const [inputValue, setInputValue] = useState(""); 
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value);
-        onSearch(e.target.value); 
+        const value = e.target.value;
+        setInputValue(value);
+        if (onSearch) {
+            onSearch(value);
+        }
     };
 
     return (

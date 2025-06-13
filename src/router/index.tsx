@@ -8,6 +8,7 @@ import { PantalonesPage } from '../pages/PantalonesPage';
 import { VestidosPage } from '../pages/VestidosPage';
 import { PolosPage } from '../pages/PolosPage';
 import { ZapatillasPage } from '../pages/ZapatillasPage';
+import { TerminosCondicionesPage } from '../pages/TerminosCondicionesPage';
 
 export const router = createBrowserRouter([
     {
@@ -26,9 +27,12 @@ export const router = createBrowserRouter([
                 path: 'register',
                 element: <RegisterPage />,
             },
-            {
-                path: 'checkout', // Nueva ruta
+            {                path: 'checkout', // Nueva ruta
                 element: <CheckoutPage />,
+            },
+            {
+                path: 'terminos-y-condiciones',
+                element: <TerminosCondicionesPage />,
             },
             {
                 path: '/pantalones',

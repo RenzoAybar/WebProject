@@ -1,4 +1,5 @@
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -43,7 +44,8 @@ export const Footer = () => {
                   className="text-gray-400 hover:text-white transition-colors"
                   onClick={(e) => {
                     e.preventDefault();
-                    document.dispatchEvent(new CustomEvent('showSobreNosotros'));
+                    const event = new CustomEvent('showSobreNosotros', { bubbles: true });
+                    document.dispatchEvent(event);
                   }}
                 >
                   Sobre Nosotros
@@ -60,7 +62,14 @@ export const Footer = () => {
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Rastrear Pedido</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Devoluciones y Reembolsos</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Preguntas Frecuentes</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Términos y Condiciones</a></li>
+              <li>
+                <Link 
+                  to="/terminos-y-condiciones"
+                  className="text-gray-400 hover:text-white transition-colors block"
+                >
+                  Términos y Condiciones
+                </Link>
+              </li>
             </ul>
           </div>
 
