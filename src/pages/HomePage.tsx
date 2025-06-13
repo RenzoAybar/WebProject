@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { FeaturedProducts } from "../components/FeaturedProducts"
 import { RecommendedProducts } from "../components/RecommendedProducts"
 import { MainBrands } from "../components/MainBrands"
+import { FavoriteProducts } from "../components/FavoriteProducts"
 import { useOutletContext } from "react-router-dom";
 
 export const HomePage = () => {
@@ -28,8 +29,9 @@ export const HomePage = () => {
             
             <MainBrands/>
 
-            <FeaturedProducts searchTerm={searchTerm} /> {}
-            <RecommendedProducts searchTerm={searchTerm} /> {}
+            <FeaturedProducts searchTerm={searchTerm} />
+            <RecommendedProducts searchTerm={searchTerm} />
+            <FavoriteProducts searchTerm={searchTerm} />
             <Footer />
 
             {}

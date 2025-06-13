@@ -1,17 +1,49 @@
-import { FaCartPlus, FaChevronLeft, FaChevronRight, FaStar } from "react-icons/fa";
-import { useRef } from "react";
+import { FaCartPlus, FaChevronLeft, FaChevronRight, FaStar, FaHeart, FaRegHeart } from "react-icons/fa";
+import { useRef, useState, useEffect } from "react";
 
 interface RecommendedProductsProps {
     searchTerm: string;
 }
 
-const productos = [
+interface Producto {
+    nombre: string;
+    descripcion: string;
+    precio: number;
+    imagen: string;
+    rating: number;
+}
+
+const productos: Producto[] = [
     { nombre: "Producto 1", descripcion: "Descripción breve", precio: 850, imagen: "/products/pantalon1.png", rating: 4.9 },
     { nombre: "Producto 2", descripcion: "Descripción breve", precio: 850, imagen: "/products/pantalon1.png", rating: 4.9 },
 ];
 
 export const RecommendedProducts: React.FC<RecommendedProductsProps> = ({ searchTerm }) => {
     const scrollRef = useRef<HTMLDivElement>(null);
+    const [favorites, setFavorites] = useState<number[]>([]);
+
+    // Cargar favoritos guardados en localStorage
+    useEffect(() => {
+        const savedFavorites = localStorage.getItem('favorites');
+        if (savedFavorites) {
+            setFavorites(JSON.parse(savedFavorites));
+        }
+    }, []);
+
+    const toggleFavorite = (productId: number) => {
+        const updatedFavorites = favorites.includes(productId)
+            ? favorites.filter(id => id !== productId)
+            : [...favorites, productId];
+        
+        setFavorites(updatedFavorites);
+        localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    };
+
+    const isFavorite = (productId: number) => favorites.includes(productId);
+
+    const productosFiltrados = productos.filter(producto =>
+        producto.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     const scrollLeft = () => {
         scrollRef.current?.scrollBy({ left: -320, behavior: "smooth" });
@@ -20,10 +52,6 @@ export const RecommendedProducts: React.FC<RecommendedProductsProps> = ({ search
     const scrollRight = () => {
         scrollRef.current?.scrollBy({ left: 320, behavior: "smooth" });
     };
-
-    const productosFiltrados = productos.filter(producto =>
-        producto.nombre.toLowerCase().includes(searchTerm.toLowerCase())
-    );
 
     return (
         <div className="py-5">
@@ -41,11 +69,21 @@ export const RecommendedProducts: React.FC<RecommendedProductsProps> = ({ search
                                 <article key={idx} className="w-[270px] flex-shrink-0 rounded-xl bg-white p-3 shadow-lg transition hover:scale-105 hover:shadow-xl">
                                     <a href="#">
                                         <div className="relative flex items-end overflow-hidden rounded-xl">
-                                            <img src={producto.imagen} alt="Product" />
+                                            <img src={producto.imagen} alt={producto.nombre} />
                                             <div className="absolute bottom-3 left-3 inline-flex items-center rounded-lg bg-white p-2 shadow-md">
                                                 <FaStar />
                                                 <span className="ml-1 text-sm text-slate-400">{producto.rating}</span>
                                             </div>
+                                            <button
+                                                onClick={() => toggleFavorite(idx)}
+                                                className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md hover:bg-gray-200"
+                                            >
+                                                {isFavorite(idx) ? (
+                                                    <FaHeart size={20} color="red" />
+                                                ) : (
+                                                    <FaRegHeart size={20} />
+                                                )}
+                                            </button>
                                         </div>
                                         <div className="mt-1 p-2">
                                             <h2 className="text-slate-700 font-semibold">{producto.nombre}</h2>
